@@ -2,7 +2,6 @@ import { motion } from 'framer-motion'
 import { SUBJECT_META } from '../data'
 import { dueCards, useAppState } from '../store'
 import { Crammy } from '../components/Crammy'
-import { TeX } from '../components/Math'
 
 const spring = { type: 'spring' as const, stiffness: 300, damping: 22 }
 
@@ -96,12 +95,6 @@ export function Home({ onSnap, onReview }: { onSnap: () => void; onReview: () =>
                     </div>
                     <div style={{ fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                       {c.problem.question}
-                      {c.problem.questionMath && (
-                        <>
-                          {' '}
-                          <TeX src={c.problem.questionMath} />
-                        </>
-                      )}
                     </div>
                   </div>
                 </motion.div>

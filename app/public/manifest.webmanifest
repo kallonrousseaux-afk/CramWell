@@ -1,0 +1,17 @@
+{
+  "name": "CramWell",
+  "short_name": "CramWell",
+  "description": "Snap a problem, get a step-by-step solution, and remember it forever.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFF9F0",
+  "theme_color": "#FFF9F0",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

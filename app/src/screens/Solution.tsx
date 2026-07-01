@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { SUBJECT_META, type StudyCard } from '../data'
+import { addSolvedCard } from '../store'
 import { TeX } from '../components/Math'
 import { Confetti } from '../components/Confetti'
 
@@ -83,6 +84,7 @@ export function Solution({ card, onDone }: { card: StudyCard; onDone: () => void
         className={`pill ${added ? 'pill--quiet' : 'pill--mint'}`}
         style={{ width: '100%', marginTop: 24, padding: '18px 24px', fontSize: 17 }}
         onClick={() => {
+          addSolvedCard(card)
           setAdded(true)
           setTimeout(onDone, 600)
         }}
@@ -93,6 +95,14 @@ export function Solution({ card, onDone }: { card: StudyCard; onDone: () => void
       <p style={{ textAlign: 'center', color: 'var(--ink-soft)', fontSize: 14, marginTop: 12 }}>
         This becomes a flashcard — CramWell will remind you right before you'd forget it.
       </p>
+      {!added && (
+        <button
+          onClick={onDone}
+          style={{ display: 'block', margin: '4px auto 0', color: 'var(--ink-soft)', fontWeight: 700, padding: 12 }}
+        >
+          Skip for now
+        </button>
+      )}
     </div>
   )
 }

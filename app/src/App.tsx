@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import type { StudyCard } from './data'
-import { addSolvedCard } from './store'
 import { Home } from './screens/Home'
 import { Snap } from './screens/Snap'
 import { Solution } from './screens/Solution'
@@ -29,10 +28,7 @@ export default function App() {
     return (
       <Snap
         onClose={() => setOverlay({ kind: 'none' })}
-        onSolved={(card) => {
-          addSolvedCard(card)
-          setOverlay({ kind: 'solution', card })
-        }}
+        onSolved={(card) => setOverlay({ kind: 'solution', card })}
       />
     )
   }

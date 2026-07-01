@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import type { Grade } from 'ts-fsrs'
 import { SUBJECT_META, type StudyCard } from '../data'
@@ -11,8 +11,8 @@ const spring = { type: 'spring' as const, stiffness: 300, damping: 22 }
 
 export function Review({ cramming = false, onSnap }: { cramming?: boolean; onSnap: () => void }) {
   const state = useAppState()
-  // Freeze the session queue on mount so grading doesn't reshuffle mid-session.
-  const initialQueue = useMemo(() => dueCards(state.cards, cramming).map((c) => c.id), [])
+  // Freeze the session queue on first render so grading doesn't reshuffle mid-session.
+  const [initialQueue] = useState(() => dueCards(state.cards, cramming).map((c) => c.id))
   const [pos, setPos] = useState(0)
   const [flipped, setFlipped] = useState(false)
   const [done, setDone] = useState(0)

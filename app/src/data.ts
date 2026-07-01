@@ -51,7 +51,7 @@ export const DEMO_PROBLEMS: Problem[] = [
     question: 'Solve the quadratic equation',
     questionMath: 'x^2 - 5x + 6 = 0',
     steps: [
-      { title: 'Spot the pattern', body: '\\text{We need two numbers that multiply to } 6 \\text{ and add to } {-5}.' },
+      { title: 'Spot the pattern', body: 'We need two numbers that multiply to 6 and add to −5: those are −2 and −3.', text: true },
       { title: 'Factor it', body: 'x^2 - 5x + 6 = (x - 2)(x - 3)' },
       { title: 'Set each factor to zero', body: 'x - 2 = 0 \\quad \\text{or} \\quad x - 3 = 0' },
     ],
