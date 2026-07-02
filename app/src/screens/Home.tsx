@@ -5,7 +5,15 @@ import { Crammy } from '../components/Crammy'
 
 const spring = { type: 'spring' as const, stiffness: 300, damping: 22 }
 
-export function Home({ onSnap, onReview }: { onSnap: () => void; onReview: () => void }) {
+export function Home({
+  onSnap,
+  onReview,
+  onCreate,
+}: {
+  onSnap: () => void
+  onReview: () => void
+  onCreate: () => void
+}) {
   const state = useAppState()
   const due = dueCards(state.cards)
   const hour = new Date().getHours()
@@ -44,6 +52,15 @@ export function Home({ onSnap, onReview }: { onSnap: () => void; onReview: () =>
         style={{ width: '100%', marginTop: 24, padding: '22px 24px', fontSize: 20, fontWeight: 800 }}
       >
         📸 Snap a problem
+      </motion.button>
+      <motion.button
+        whileTap={{ scale: 0.96 }}
+        transition={spring}
+        onClick={onCreate}
+        className="pill pill--quiet"
+        style={{ width: '100%', marginTop: 12 }}
+      >
+        📋 Paste notes → flashcards
       </motion.button>
 
       <section style={{ marginTop: 32 }}>

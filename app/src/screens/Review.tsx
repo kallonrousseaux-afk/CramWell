@@ -9,7 +9,15 @@ import { Confetti } from '../components/Confetti'
 
 const spring = { type: 'spring' as const, stiffness: 300, damping: 22 }
 
-export function Review({ cramming = false, onSnap }: { cramming?: boolean; onSnap: () => void }) {
+export function Review({
+  cramming = false,
+  embedded = false,
+  onSnap,
+}: {
+  cramming?: boolean
+  embedded?: boolean
+  onSnap: () => void
+}) {
   const state = useAppState()
   // Freeze the session queue on first render so grading doesn't reshuffle mid-session.
   const [initialQueue] = useState(() => dueCards(state.cards, cramming).map((c) => c.id))
@@ -33,7 +41,7 @@ export function Review({ cramming = false, onSnap }: { cramming?: boolean; onSna
 
   if (!card) {
     return (
-      <div className="screen" style={{ display: 'grid', placeItems: 'center' }}>
+      <div className="screen" style={{ display: 'grid', placeItems: 'center', minHeight: embedded ? 'calc(100dvh - 68px)' : undefined }}>
         {done > 0 && <Confetti />}
         <div style={{ textAlign: 'center' }}>
           <Crammy size={110} mood="excited" />
@@ -52,7 +60,15 @@ export function Review({ cramming = false, onSnap }: { cramming?: boolean; onSna
   const meta = SUBJECT_META[card.problem.subject]
 
   return (
-    <div className="screen" style={{ display: 'flex', flexDirection: 'column' }}>
+    <div
+      className="screen"
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        paddingTop: embedded ? 16 : undefined,
+        minHeight: embedded ? 'calc(100dvh - 68px)' : undefined,
+      }}
+    >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <h1 style={{ fontSize: 24 }}>{cramming ? 'Cram session' : 'Review'}</h1>
         <span className="label" style={{ color: accent }}>

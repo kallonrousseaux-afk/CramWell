@@ -10,6 +10,10 @@ CramWell is a study app built on one idea: every problem you photograph is a per
 - 🪜 **Step-by-step solutions** — properly typeset math (KaTeX), steps cascade in, confetti on solve.
 - 🃏 **Review** — flip cards, self-grade Again/Hard/Good/Easy, scheduled by [ts-fsrs](https://github.com/open-spaced-repetition/ts-fsrs).
 - ⏳ **Cram Mode** — set an exam date, see an honest coverage meter, and pull forward everything due in the next 3 days.
+- 📋 **Notes → flashcards** — paste notes (one fact per line, `Term: definition` or `Question? Answer`) and get a deck instantly. AI generation from PDFs/photos plugs in here later.
+- 🧠 **Learn Mode** — adaptive multiple-choice and true/false; each card needs 2 correct answers to be mastered, and answers feed the FSRS scheduler.
+- 📝 **Practice test** — a scored 8-question dress rehearsal (doesn't touch your review schedule).
+- ⚡ **Match** — timed tap-to-pair game: questions vs answers, race the clock.
 - 🔥 Streaks, stats, and Crammy the owl. All data stays on-device (localStorage).
 
 ## Run it

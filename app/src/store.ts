@@ -64,6 +64,14 @@ function bumpStreak(s: AppState): Pick<AppState, 'streak' | 'lastStudyDay'> {
   return { streak: s.lastStudyDay === yesterday ? s.streak + 1 : 1, lastStudyDay: today }
 }
 
+export function addCards(cards: StudyCard[]) {
+  commit({
+    ...state,
+    cards: [...cards, ...state.cards],
+    ...bumpStreak(state),
+  })
+}
+
 export function addSolvedCard(card: StudyCard) {
   commit({
     ...state,
