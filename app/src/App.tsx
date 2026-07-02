@@ -10,6 +10,9 @@ import { Create } from './screens/Create'
 import { Learn } from './screens/Learn'
 import { Test } from './screens/Test'
 import { Match } from './screens/Match'
+import { Podcast } from './screens/Podcast'
+import { Record } from './screens/Record'
+import { Focus } from './screens/Focus'
 
 type Tab = 'home' | 'study' | 'cram'
 type Overlay =
@@ -17,10 +20,13 @@ type Overlay =
   | { kind: 'snap' }
   | { kind: 'solution'; card: StudyCard }
   | { kind: 'cram-session' }
-  | { kind: 'create' }
+  | { kind: 'create'; initialText?: string }
   | { kind: 'learn' }
   | { kind: 'test' }
   | { kind: 'match' }
+  | { kind: 'podcast' }
+  | { kind: 'record' }
+  | { kind: 'focus' }
 
 const spring = { type: 'spring' as const, stiffness: 300, damping: 22 }
 
@@ -50,7 +56,13 @@ export default function App() {
     case 'solution':
       return <Solution card={overlay.card} onDone={close} />
     case 'create':
-      return <Create onClose={close} />
+      return <Create onClose={close} initialText={overlay.initialText} />
+    case 'podcast':
+      return <Podcast onClose={close} />
+    case 'record':
+      return <Record onClose={close} onUseTranscript={(text) => setOverlay({ kind: 'create', initialText: text })} />
+    case 'focus':
+      return <Focus onClose={close} />
     case 'learn':
       return <Learn onClose={close} />
     case 'test':
@@ -69,7 +81,12 @@ export default function App() {
   return (
     <div>
       {tab === 'home' && (
-        <Home onSnap={openSnap} onReview={() => setTab('study')} onCreate={() => setOverlay({ kind: 'create' })} />
+        <Home
+          onSnap={openSnap}
+          onReview={() => setTab('study')}
+          onCreate={() => setOverlay({ kind: 'create' })}
+          onOpen={(kind) => setOverlay({ kind })}
+        />
       )}
       {tab === 'study' && (
         <div>

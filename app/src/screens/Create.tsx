@@ -8,8 +8,8 @@ import { Confetti } from '../components/Confetti'
 const spring = { type: 'spring' as const, stiffness: 300, damping: 22 }
 const SUBJECTS = Object.keys(SUBJECT_META) as Subject[]
 
-export function Create({ onClose }: { onClose: () => void }) {
-  const [text, setText] = useState('')
+export function Create({ onClose, initialText = '' }: { onClose: () => void; initialText?: string }) {
+  const [text, setText] = useState(initialText)
   const [subject, setSubject] = useState<Subject>('other')
   const [added, setAdded] = useState(0)
   const problems = parseNotes(text, subject)

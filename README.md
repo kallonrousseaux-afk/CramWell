@@ -14,6 +14,9 @@ CramWell is a study app built on one idea: every problem you photograph is a per
 - 🧠 **Learn Mode** — adaptive multiple-choice and true/false; each card needs 2 correct answers to be mastered, and answers feed the FSRS scheduler.
 - 📝 **Practice test** — a scored 8-question dress rehearsal (doesn't touch your review schedule).
 - ⚡ **Match** — timed tap-to-pair game: questions vs answers, race the clock.
+- 🎧 **Study podcast** — a two-voice episode generated from your own deck, spoken with the browser's built-in text-to-speech. Works offline; AI-written scripts plug in later.
+- 🎙 **Record a lecture** — live transcription via the browser's speech recognition (Chrome/Edge), flowing straight into notes→flashcards.
+- ⏱ **Focus timer** — a 25/5 pomodoro with Crammy keeping you company.
 - 🔥 Streaks, stats, and Crammy the owl. All data stays on-device (localStorage).
 
 ## Run it

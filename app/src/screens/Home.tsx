@@ -9,10 +9,12 @@ export function Home({
   onSnap,
   onReview,
   onCreate,
+  onOpen,
 }: {
   onSnap: () => void
   onReview: () => void
   onCreate: () => void
+  onOpen: (kind: 'record' | 'podcast' | 'focus') => void
 }) {
   const state = useAppState()
   const due = dueCards(state.cards)
@@ -62,6 +64,28 @@ export function Home({
       >
         📋 Paste notes → flashcards
       </motion.button>
+
+      <div style={{ display: 'flex', gap: 10, marginTop: 12 }}>
+        {(
+          [
+            { kind: 'record', icon: '🎙', label: 'Record', tint: 'var(--pastel-coral)', deep: 'var(--coral-deep)' },
+            { kind: 'podcast', icon: '🎧', label: 'Podcast', tint: 'var(--pastel-grape)', deep: 'var(--grape-deep)' },
+            { kind: 'focus', icon: '⏱', label: 'Focus', tint: 'var(--pastel-sunshine)', deep: '#a06b00' },
+          ] as const
+        ).map((q) => (
+          <motion.button
+            key={q.kind}
+            whileTap={{ scale: 0.94 }}
+            transition={spring}
+            onClick={() => onOpen(q.kind)}
+            className="card"
+            style={{ flex: 1, textAlign: 'center', padding: '12px 4px', background: q.tint, border: 'none', cursor: 'pointer' }}
+          >
+            <div style={{ fontSize: 22 }}>{q.icon}</div>
+            <div style={{ fontWeight: 800, fontSize: 13, color: q.deep }}>{q.label}</div>
+          </motion.button>
+        ))}
+      </div>
 
       <section style={{ marginTop: 32 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
